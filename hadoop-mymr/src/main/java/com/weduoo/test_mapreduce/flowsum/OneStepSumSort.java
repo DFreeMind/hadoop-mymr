@@ -56,11 +56,11 @@ public class OneStepSumSort {
 			for (FlowBean bean : values) {
 
 				upCount += bean.getUpFlow();
-				dCount += bean.getdFlow();
+				dCount += bean.getDownFlow();
 
 			}
 			//每次遍历都需要创建新的对象，这样才可以保证
-			//treeMap中的数据是全部的数据，还不是之引用同一个对象
+			//treeMap中的数据是全部的数据，而不是只引用同一个对象
 			//text也是一样，需要重新创建
 			FlowBean sumBean = new FlowBean();
 			sumBean.set(upCount, dCount);

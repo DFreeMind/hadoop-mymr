@@ -39,10 +39,11 @@ public class WordCountDriver {
         //设置输入输出处理方式
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
-
         //设置输入输出路径，setInputPaths方法可以设置多个输入路径
         FileInputFormat.setInputPaths(job, new Path(LOCAL+"/wordcount/input/"));
         FileOutputFormat.setOutputPath(job, new Path(LOCAL+"/wordcount/output/"));
+//        FileInputFormat.setInputPaths(job, new Path("/wordcount/input/"));
+//        FileOutputFormat.setOutputPath(job, new Path("/wordcount/output/"));
 
         //向yarn集群提价job
         //等待运行完成之后再退出，waitForCompletion的参数表示是否打印处理过程
