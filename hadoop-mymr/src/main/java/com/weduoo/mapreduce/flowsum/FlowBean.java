@@ -1,4 +1,4 @@
-package com.weduoo.test_mapreduce.flowsum;
+package com.weduoo.mapreduce.flowsum;
 
 import java.io.DataInput;
 import java.io.DataOutput;

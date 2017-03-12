@@ -1,4 +1,4 @@
-package com.weduoo.test_mapreduce.wordcount;
+package com.weduoo.mapreduce.wordcount;
 
 import java.io.IOException;
 

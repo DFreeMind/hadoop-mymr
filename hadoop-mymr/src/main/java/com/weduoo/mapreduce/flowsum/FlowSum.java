@@ -1,4 +1,4 @@
-package com.weduoo.test_mapreduce.flowsum;
+package com.weduoo.mapreduce.flowsum;
 
 import java.io.IOException;
 
@@ -16,9 +16,9 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
-import com.weduoo.test_mapreduce.wordcount.WordCountDriver;
-import com.weduoo.test_mapreduce.wordcount.WordCountMapper;
-import com.weduoo.test_mapreduce.wordcount.WordCountReducer;
+import com.weduoo.mapreduce.wordcount.WordCountDriver;
+import com.weduoo.mapreduce.wordcount.WordCountMapper;
+import com.weduoo.mapreduce.wordcount.WordCountReducer;
 
 public class FlowSum {
 	public static String LOCAL = "/Users/weduoo/test/mapreduce";
