@@ -3,6 +3,7 @@ package com.weduoo.mapreduce.wordcount;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -11,6 +12,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.mapreduce.lib.partition.HashPartitioner;
 
 public class WordCountDriver {
 
@@ -29,6 +31,8 @@ public class WordCountDriver {
         job.setJarByClass(WordCountDriver.class);
         //设置Mapper和Reducer类
         job.setMapperClass(WordCountMapper.class);
+        //设置Combine类
+        job.setCombinerClass(WordCountReducer.class);
         job.setReducerClass(WordCountReducer.class);
         //设置输入输出
         job.setMapOutputKeyClass(Text.class);
@@ -39,9 +43,18 @@ public class WordCountDriver {
         //设置输入输出处理方式
         job.setInputFormatClass(TextInputFormat.class);
         job.setOutputFormatClass(TextOutputFormat.class);
+        
+        //job.setNumReduceTasks(2);
+        
         //设置输入输出路径，setInputPaths方法可以设置多个输入路径
+        //输出路径存在时，递归删除输出路径文件
+        Path out = new Path(LOCAL+"/wordcount/output/");
+		FileSystem fs = FileSystem.get(conf);
+		if(fs.exists(out)){
+			fs.delete(out, true);
+		}
         FileInputFormat.setInputPaths(job, new Path(LOCAL+"/wordcount/input/"));
-        FileOutputFormat.setOutputPath(job, new Path(LOCAL+"/wordcount/output/"));
+        FileOutputFormat.setOutputPath(job, out);
 //        FileInputFormat.setInputPaths(job, new Path("/wordcount/input/"));
 //        FileOutputFormat.setOutputPath(job, new Path("/wordcount/output/"));
 
